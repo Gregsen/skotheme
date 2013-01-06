@@ -73,7 +73,7 @@ def recursiveCompare():
                 if (args.c):
                     children2 = parser.getChildren(uri2, parser.graphlist[i])
                 if (args.p):
-                    parents2 = parser.getParents(uri1, startgraph)
+                    parents2 = parser.getParents(uri1, parser.graphlist[i])
                 if parser.isSameTerm(label1, label2):
                     parser.addEquals(uri1, uri2)
                     continue
@@ -94,7 +94,7 @@ def recursiveCompare():
                         parser.addRelated(uri1, uri2)
                 if (args.p):
                     if (bool(set(parents1) & set(parents2)) and
-                         len(set(parents1) & set(parents2)) >= 3):
+                         len(set(parents1) & set(parents2)) >= 1):
                         parser.addRelated(uri1, uri2)
             if len(parser.graphlist) > 1:
                 recursiveCompare(parser.graphlist)
