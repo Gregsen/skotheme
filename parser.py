@@ -51,29 +51,27 @@ def recursiveCompare():
         dict1 = parser.getLabels(startgraph)
         dict2 = parser.getLabels(parser.graphlist[i])
         parser.logger.info('starting comparison...')
-    #   if mode == 'i':
-    #       self.logger.info('Searching only equal terms...')
-    #   # for every label in both dicts
+       # for every label in both dicts
         for uri1, label1 in dict1.items():
-            if(args.s):
-                label1 = parser.stemWords(label1)
             if (args.r):
                 label1 = parser.removeDiacritics(label1)
                 label1 = parser.removePunctuation(label1)
+            if (args.s):
+                label1 = parser.stemWords(label1)
             if (args.c):
                 children1 = parser.getChildren(uri1, startgraph)
             if (args.p):
                 parents1 = parser.getParents(uri1, startgraph)
             for uri2, label2 in dict2.items():
                 if (args.r):
-                    label1 = parser.removeDiacritics(label1)
-                    label1 = parser.removePunctuation(label1)
+                    label2 = parser.removeDiacritics(label2)
+                    label2 = parser.removePunctuation(label2)
                 if(args.s):
                     label2 = parser.stemWords(label2)
                 if (args.c):
                     children2 = parser.getChildren(uri2, parser.graphlist[i])
                 if (args.p):
-                    parents2 = parser.getParents(uri1, parser.graphlist[i])
+                    parents2 = parser.getParents(uri2, parser.graphlist[i])
                 if parser.isSameTerm(label1, label2):
                     parser.addEquals(uri1, uri2)
                     continue
@@ -104,3 +102,4 @@ parser.writeToFile(args.output, args.f)
 
 for k, v in parser.reporting.iteritems():
     print v,' ',k,' found'
+
