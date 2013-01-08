@@ -192,19 +192,19 @@ class Merger:
         """This "private" method is a generator over broaderTerms of a given URI in
         a given ConjunctiveGraph. Use getParents() to obtain the list of broaderTerms
         """
-        for n in graph.transitive_objects(uri, URIRef('http://www.w3.org/2004/02/skos/core#broader')):
+        for n in graph.transitive_objects(URIRef(uri), URIRef('http://www.w3.org/2004/02/skos/core#broader')):
             if (uri==n):
                 continue
-        yield n
+            yield n
 
     def __narrowers(self, uri, graph):
         """This "private" method is a generator over narrowerTerms of a given URI in
         a given ConjunctiveGraph. Use getchildren() to obtain the list of narrowerTerms
         """
-        for n in graph.transitive_objects(uri, URIRef('http://www.w3.org/2004/02/skos/core#narrower')):
+        for n in graph.transitive_objects(URIRef(uri), URIRef('http://www.w3.org/2004/02/skos/core#narrower')):
             if (uri==n):
                 continue
-        yield n
+            yield n
 
     def getParents(self, uri, graph):
         list = []
