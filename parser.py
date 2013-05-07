@@ -29,9 +29,9 @@ parser.add_argument('-c', action='store_true',
 parser.add_argument('-p', action='store_true',
                     help='compare parents (broader terms)')
 parser.add_argument("-i", action='store_true',
-                    help='Map identical terms only ')
+                    help='Map identical terms only')
 parser.add_argument("-t", action='store_true',
-                    help='Map identical terms only ')
+                    help='compare term signatur')
 args = parser.parse_args()  # parse arguments
 
 if (len(args.input) < 2):  # if there are less than 2 files
@@ -44,7 +44,7 @@ def recursiveCompare():
     """This function removes the first graph
     from the list of graphs and compares it to
     the other graphs. When finished, it starts
-    over (i.e. recursuion9
+    over (i.e. recursuion)
     """
     startgraph = parser.graphlist.pop()
     for i in range(len(parser.graphlist)):
