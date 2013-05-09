@@ -36,3 +36,8 @@ nosetests.xml
 
 # Editor
 *~
+
+# Virtualenv
+bin/
+include/
+lib/
