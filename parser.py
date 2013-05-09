@@ -91,7 +91,7 @@ def recursiveCompare():
                     if (bool(set(children1) & set(children2))):
                         parser.addRelated(uri1, uri2)
                 if (args.p):
-                    if (bool(set(parents1) & set(parents2)):
+                    if (bool(set(parents1) & set(parents2))):
                         parser.addRelated(uri1, uri2)
             if len(parser.graphlist) > 1:
                 recursiveCompare(parser.graphlist)
