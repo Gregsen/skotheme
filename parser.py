@@ -1,7 +1,7 @@
 #! /usr/bin/python2.7
 # -*- coding: utf-8 -*-#
 
-from src.skostheme import Merger
+from src.skotheme import Merger
 
 import argparse
 import sys
