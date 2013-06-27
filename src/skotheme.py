@@ -148,15 +148,19 @@ class Merger:
 
     def getLabels(self, graph):
         """getLabels takes a ConjunctiveGraph instance and finds all
-        SKOS:prefLabel. It returns an dictionary with {uri:label}.
+        SKOS:prefLabel and rdfs:label. It returns an dictionary with {uri:label}.
         param: graph - a ConjunctiveGraph instance
         return: compict - a dictionary of all {uri:label} for a graph
         """
         compdict = {}
         self.logger.info('Getting labels from %s' % (graph))
-        for uri, label in graph.subject_objects(
-                    URIRef("http://www.w3.org/2004/02/skos/core#prefLabel")):
-            compdict[uri] = label.toPython().strip().lower()
+        if (None, Merger.SKOS.prefLabel, None) in graph: 
+            for uri, label in graph.subject_objects(Merger.SKOS.prefLabel):
+                compdict[uri] = label.toPython().strip().lower()
+        if (None, URIRef("http://www.w3.org/2000/01/rdf-schema#label"), None) in graph:
+            for uri, label in graph.subject_objects(
+                   URIRef("http://www.w3.org/2000/01/rdf-schema#label")):
+                compdict[uri] = label.toPython().strip().lower() 
         return compdict
 
     def removeDiacritics(self, label):
