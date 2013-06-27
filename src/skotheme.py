@@ -17,7 +17,7 @@ import string
 
 __author__ = "Jana Hoerstermann, Nils Geisemeyer, Gregor Kneitschel"
 __email__ = "firstname.lastname@fh-potsdam.de"
-__version__ = "0.0.1-firstblood"
+__version__ = "0.0.2-dominating"
 # firstblood, dominating, rampage, unstoppable
 # godlike, whickedsick, ludacris, holyshit
 __license__ = "GPL"
