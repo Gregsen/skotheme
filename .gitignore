@@ -41,3 +41,6 @@ nosetests.xml
 bin/
 include/
 lib/
+
+# Customfolders
+testdaten/
