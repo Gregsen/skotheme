@@ -1,0 +1,1879 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY terms "http://purl.org/dc/terms/" >
+    <!ENTITY foaf "http://xmlns.com/foaf/0.1/" >
+    <!ENTITY aboutdcmi "http://purl.org/dc/aboutdcmi#" >
+    <!ENTITY bibo "http://purl.org/ontology/bibo/" >
+    <!ENTITY dc "http://purl.org/dc/elements/1.1/" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY skos "http://www.w3.org/2004/02/skos/core#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY gcmd "http://isdc.gfz-potsdam.de/ontology/gcmd.owl#" >
+    <!ENTITY isdc "http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#" >
+    <!ENTITY gnd "http://d-nb.info/standards/elementset/gnd#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.w3.org/2002/07/owl"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:gcmd="http://isdc.gfz-potsdam.de/ontology/gcmd.owl#"
+     xmlns:isdc="http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#"
+     xmlns:bibo="http://purl.org/ontology/bibo/"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:gnd="http://d-nb.info/standards/elementset/gnd#">
+    <Ontology rdf:about="http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl">
+        <terms:hasVersion>1.4</terms:hasVersion>
+        <terms:modified>2012-09-12</terms:modified>
+        <terms:title xml:lang="en">ISDC Ontology</terms:title>
+        <terms:description>ISDC ontology as information model for data lifecycle management for geosciences</terms:description>
+        <terms:creator rdf:resource="http://isdc.gfz-potsdam.de/resource/2500043"/>
+        <terms:contributor rdf:resource="http://isdc.gfz-potsdam.de/resource/2500066"/>
+        <imports rdf:resource="http://isdc.gfz-potsdam.de/ontology/gcmd.owl"/>
+        <imports rdf:resource="http://isdc.gfz-potsdam.de/ontology/gcmd_location.skos.rdf"/>
+        <!--imports rdf:resource="http://isdc.gfz-potsdam.de/ontology/gcmd_science.skos.rdf"/>
+        <imports rdf:resource="http://isdc.gfz-potsdam.de/ontology/gcmd_service.skos.rdf"/>
+        <imports rdf:resource="http://isdc.gfz-potsdam.de/ontology/gemet-schema.rdf"/>
+        <imports rdf:resource="http://isdc.gfz-potsdam.de/ontology/isdc_free_keywords.skos.rdf"/>
+        <imports rdf:resource="http://isdc.gfz-potsdam.de/ontology/wgs84_pos.owl"/>
+        <imports rdf:resource="http://purl.org/ontology/bibo/"/>
+        <imports rdf:resource="http://xmlns.com/foaf/0.1/"/-->
+    </Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <AnnotationProperty rdf:about="&terms;modified"/>
+    <AnnotationProperty rdf:about="&skos;prefLabel">
+        <rdfs:subPropertyOf rdf:resource="&rdfs;label"/>
+    </AnnotationProperty>
+    <AnnotationProperty rdf:about="&terms;description"/>
+    <AnnotationProperty rdf:about="&terms;issued"/>
+    <AnnotationProperty rdf:about="&terms;hasVersion"/>
+    <AnnotationProperty rdf:about="&terms;publisher"/>
+    
+
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#carries -->
+
+    <ObjectProperty rdf:about="&isdc;carries">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:label xml:lang="en">carries</rdfs:label>
+        <rdfs:comment xml:lang="en">A platform carries an instrument.</rdfs:comment>
+        <rdfs:range rdf:resource="&isdc;Instrument"/>
+        <rdfs:domain rdf:resource="&isdc;Platform"/>
+        <rdfs:subPropertyOf rdf:resource="&isdc;supplies"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#creates -->
+
+    <ObjectProperty rdf:about="&isdc;creates">
+        <rdfs:label xml:lang="en">creates</rdfs:label>
+        <rdfs:comment xml:lang="en">An institution creates a product type.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;Institution"/>
+        <rdfs:range rdf:resource="&isdc;ProductType"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#defines -->
+
+    <ObjectProperty rdf:about="&isdc;defines">
+        <rdfs:label xml:lang="en">defines</rdfs:label>
+        <rdfs:comment xml:lang="en">A project defines a product type.</rdfs:comment>
+        <rdfs:range rdf:resource="&isdc;ProductType"/>
+        <rdfs:domain rdf:resource="&isdc;Project"/>
+    </ObjectProperty>
+    
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#employs -->
+
+    <ObjectProperty rdf:about="&isdc;employs">
+        <rdfs:label xml:lang="en">employs</rdfs:label>
+        <rdfs:comment xml:lang="en">An Institution employs a person.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;Institution"/>
+        <rdfs:range rdf:resource="&isdc;Person"/>
+        <inverseOf rdf:resource="&isdc;isEmployedBy"/>
+    </ObjectProperty>
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#explains -->
+
+    <ObjectProperty rdf:about="&isdc;explains">
+        <rdfs:label xml:lang="en">explains</rdfs:label>
+        <rdfs:comment xml:lang="en">Product types and data products explain geo phenomena.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;DataProduct"/>
+        <rdfs:range rdf:resource="&isdc;GeoPhenomenon"/>
+        <rdfs:domain rdf:resource="&isdc;ProductType"/>
+        <inverseOf rdf:resource="&isdc;isExplainedBy"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#hasAuthor -->
+
+    <ObjectProperty rdf:about="&isdc;hasAuthor">
+        <rdfs:label xml:lang="en">has author</rdfs:label>
+        <rdfs:comment xml:lang="en">A paper has an author.</rdfs:comment>
+        <rdfs:range rdf:resource="&isdc;Author"/>
+        <rdfs:domain rdf:resource="&isdc;Paper"/>
+        <rdfs:subPropertyOf rdf:resource="&isdc;hasRole"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#hasDataCenterStaff -->
+
+    <ObjectProperty rdf:about="&isdc;hasDataCenterStaff">
+        <rdfs:label xml:lang="en">has data center staff</rdfs:label>
+        <rdfs:comment xml:lang="en">Something can have data center staff.</rdfs:comment>
+        <rdfs:range rdf:resource="&isdc;DataProvider"/>
+        <rdfs:domain rdf:resource="&isdc;ISDC"/>
+        <rdfs:subPropertyOf rdf:resource="&isdc;hasRole"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#hasDataCreator -->
+
+    <ObjectProperty rdf:about="&isdc;hasDataCreator">
+        <rdfs:label xml:lang="en">has data creator</rdfs:label>
+        <rdfs:comment xml:lang="en">A data product can have a data creator.</rdfs:comment>
+        <rdfs:range rdf:resource="&isdc;DataCreator"/>
+        <rdfs:domain rdf:resource="&isdc;DataProduct"/>
+        <rdfs:subPropertyOf rdf:resource="&isdc;hasRole"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#hasDataOriginator -->
+
+    <ObjectProperty rdf:about="&isdc;hasDataOriginator">
+        <rdfs:label xml:lang="en">has data originator</rdfs:label>
+        <rdfs:comment xml:lang="en">A data product or product type can have a data originator.</rdfs:comment>
+        <rdfs:range rdf:resource="&isdc;DataOriginator"/>
+        <rdfs:domain rdf:resource="&isdc;DataProduct"/>
+        <rdfs:domain rdf:resource="&isdc;ProductType"/>
+        <rdfs:subPropertyOf rdf:resource="&isdc;hasRole"/>
+        <inverseOf rdf:resource="&isdc;isDataOriginatorOf"/>
+        <equivalentProperty rdf:resource="&gcmd;Originating_Center"/>
+    </ObjectProperty>
+    
+
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#hasDataProvider -->
+
+    <ObjectProperty rdf:about="&isdc;hasDataProvider">
+        <rdfs:label xml:lang="en">has data center</rdfs:label>
+        <rdfs:comment xml:lang="en">Product types and/or data products are managed by an institution acting as data provider.</rdfs:comment>
+        <rdfs:range rdf:resource="&isdc;DataProduct"/>
+        <rdfs:domain rdf:resource="&isdc;Institution"/>
+        <rdfs:range rdf:resource="&isdc;ProductType"/>
+        <rdfs:subPropertyOf rdf:resource="&isdc;hasRole"/>
+        <inverseOf rdf:resource="&isdc;isDataProviderOf"/>
+	<!-- equivalentProperty rdf:resource="&gcmd;Data_Center"/-->
+    </ObjectProperty>
+   
+
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#hasFreeKeyword -->
+
+    <ObjectProperty rdf:about="&isdc;hasFreeKeyword">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:label xml:lang="en">has free keyword</rdfs:label>
+        <rdfs:comment xml:lang="en">An entity has a free keyword. The proper use of the keyword is defined via concept schemes.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;ISDC"/>
+        <rdfs:subPropertyOf rdf:resource="&isdc;hasKeyword"/>
+        <inverseOf rdf:resource="&isdc;isFreeKeywordFor"/>
+        <equivalentProperty rdf:resource="&gcmd;Keyword"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#hasGeoLocation -->
+
+    <ObjectProperty rdf:about="&isdc;hasGeoLocation">
+        <rdfs:label xml:lang="en">has geo location</rdfs:label>
+        <rdfs:comment xml:lang="en">Geo location connects an entity with a geonames location (URI). </rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;Institution"/>
+        <rdfs:domain rdf:resource="&isdc;Instrument"/>
+        <rdfs:domain rdf:resource="&isdc;Platform"/>
+        <inverseOf rdf:resource="&isdc;isGeoLocationFor"/>
+    </ObjectProperty>
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#hasHomepage -->
+
+    <ObjectProperty rdf:about="&isdc;hasHomepage">
+        <rdfs:label xml:lang="en">has homepage</rdfs:label>
+        <rdfs:comment xml:lang="en">An institution/person/project has a homepage</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;Institution"/>
+        <rdfs:domain rdf:resource="&isdc;Person"/>
+        <rdfs:domain rdf:resource="&isdc;Project"/>
+        <inverseOf rdf:resource="&isdc;isHomepageOf"/>
+        <equivalentProperty rdf:resource="&foaf;homepage"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#hasIDNNode -->
+
+    <ObjectProperty rdf:about="&isdc;hasIDNNode">
+        <rdfs:label xml:lang="en">has IDN node</rdfs:label>
+        <rdfs:comment xml:lang="en">An institution and a product type (GCMD DIF) have an IDN node.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;Institution"/>
+        <rdfs:domain rdf:resource="&isdc;ProductType"/>
+        <inverseOf rdf:resource="&isdc;isIDNNodeOf"/>
+        <equivalentProperty rdf:resource="&gcmd;IDN_Node"/>
+    </ObjectProperty>
+    
+
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#hasISOTopicCategory -->
+
+    <ObjectProperty rdf:about="&isdc;hasISOTopicCategory">
+        <rdfs:label xml:lang="en">has ISO topic category</rdfs:label>
+        <rdfs:comment xml:lang="en">An entity has a ISO topic category keyword. The proper use of the keyword is defined via concept schemes.</rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="&isdc;hasKeyword"/>
+        <inverseOf rdf:resource="&isdc;isISOTopicCategoryFor"/>
+        <equivalentProperty rdf:resource="&gcmd;ISO_Topic_Category"/>
+    </ObjectProperty>
+
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#hasInvestigator -->
+
+    <ObjectProperty rdf:about="&isdc;hasInvestigator">
+        <rdfs:label xml:lang="en">has investigator</rdfs:label>
+        <rdfs:comment xml:lang="en">A project can have an investigator.</rdfs:comment>
+        <rdfs:range rdf:resource="&isdc;Investigator"/>
+        <rdfs:domain rdf:resource="&isdc;Project"/>
+        <rdfs:subPropertyOf rdf:resource="&isdc;hasRole"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#hasKeyword -->
+
+    <ObjectProperty rdf:about="&isdc;hasKeyword">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:label xml:lang="en">has keyword</rdfs:label>
+        <rdfs:comment xml:lang="en">An entity has a keyword. The proper use of the keyword is defined via concept schemes.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;ISDC"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#hasLanguage -->
+
+    <ObjectProperty rdf:about="&isdc;hasLanguage">
+        <rdfs:label xml:lang="en">has language</rdfs:label>
+        <rdfs:comment xml:lang="en">Language of text in an entity.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;ISDC"/>
+        <inverseOf rdf:resource="&isdc;isLanguageFor"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+	<equivalentProperty rdf:resource="&gcmd;Data_Set_Language"/>
+    </ObjectProperty>
+
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#hasLocationKeyword -->
+
+    <ObjectProperty rdf:about="&isdc;hasLocationKeyword">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:label xml:lang="en">has location keyword</rdfs:label>
+        <rdfs:comment xml:lang="en">An entity has a location keyword. The proper use of the keyword is defined via concept schemes.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;DataProduct"/>
+        <rdfs:domain rdf:resource="&isdc;Institution"/>
+        <rdfs:domain rdf:resource="&isdc;Instrument"/>
+        <rdfs:domain rdf:resource="&isdc;Platform"/>
+        <rdfs:domain rdf:resource="&isdc;ProductType"/>
+        <rdfs:subPropertyOf rdf:resource="&isdc;hasKeyword"/>
+        <equivalentProperty rdf:resource="&isdc;isLocatedIn"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#hasMetadataCreator -->
+
+    <ObjectProperty rdf:about="&isdc;hasMetadataCreator">
+        <rdfs:label xml:lang="en">has metadata creator</rdfs:label>
+        <rdfs:comment xml:lang="en">A metadata publication can have a metadata creator.</rdfs:comment>
+        <rdfs:range rdf:resource="&isdc;MetadataCreator"/>
+        <rdfs:domain rdf:resource="&isdc;MetadataPublication"/>
+        <rdfs:subPropertyOf rdf:resource="&isdc;hasRole"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#hasPhone -->
+
+    <ObjectProperty rdf:about="&isdc;hasPhone">
+        <rdfs:label xml:lang="en">has phone number</rdfs:label>
+        <rdfs:comment xml:lang="en">Phone number of a person or institution.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;Institution"/>
+        <rdfs:domain rdf:resource="&isdc;Person"/>
+        <inverseOf rdf:resource="&isdc;isPhoneNumberOf"/>
+        <equivalentProperty rdf:resource="&foaf;phone"/>
+        <equivalentProperty rdf:resource="&gcmd;Phone"/>
+    </ObjectProperty>
+
+   
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#hasProductType -->
+
+    <ObjectProperty rdf:about="&isdc;hasProductType">
+        <rdfs:label xml:lang="en">has product type</rdfs:label>
+        <rdfs:comment xml:lang="en">A data product has a product type.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;DataProduct"/>
+        <rdfs:range rdf:resource="&isdc;ProductType"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <equivalentProperty rdf:resource="&gcmd;Parent_DIF"/>
+    </ObjectProperty>
+
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#hasReleasePlace -->
+
+    <ObjectProperty rdf:about="&isdc;hasReleasePlace">
+        <rdfs:label xml:lang="en">has release place</rdfs:label>
+        <rdfs:comment xml:lang="en">The release place of a dataset.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;DataProduct"/>
+        <rdfs:domain rdf:resource="&isdc;ProductType"/>
+        <inverseOf rdf:resource="&isdc;isReleasePlaceOf"/>
+        <equivalentProperty rdf:resource="&gcmd;Dataset_Release_Place"/>
+    </ObjectProperty>
+    
+
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#hasResearchFocus -->
+
+    <ObjectProperty rdf:about="&isdc;hasResearchFocus">
+        <rdfs:label xml:lang="en">has research focus</rdfs:label>
+        <rdfs:comment xml:lang="en">An entity has a research focus (keyword). The proper use of the keyword is defined via concept schemes.</rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="&isdc;hasKeyword"/>
+        <inverseOf rdf:resource="&isdc;isResearchFocusOf"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#hasRole -->
+
+    <ObjectProperty rdf:about="&isdc;hasRole">
+        <rdfs:label xml:lang="en">has role</rdfs:label>
+        <rdfs:comment xml:lang="en">An institution or a person provide a role.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;ISDC"/>
+        <rdfs:range rdf:resource="&isdc;Institution"/>
+        <rdfs:range rdf:resource="&isdc;Person"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#hasScienceKeyword -->
+
+    <ObjectProperty rdf:about="&isdc;hasScienceKeyword">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:label xml:lang="en">has science keyword</rdfs:label>
+        <rdfs:comment xml:lang="en">An entity has a science keyword. The proper use of the keyword is defined via concept schemes.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;ISDC"/>
+        <rdfs:subPropertyOf rdf:resource="&isdc;hasKeyword"/>
+        <equivalentProperty rdf:resource="&gcmd;Parameters"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#hasServiceKeyword -->
+
+    <ObjectProperty rdf:about="&isdc;hasServiceKeyword">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:label xml:lang="en">has service keyword</rdfs:label>
+        <rdfs:comment xml:lang="en">An entity has a service keyword. The proper use of the keyword is defined via concept schemes.</rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="&isdc;hasKeyword"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#hasStatus -->
+
+    <ObjectProperty rdf:about="&isdc;hasStatus">
+        <rdfs:label xml:lang="en">status</rdfs:label>
+        <rdfs:comment xml:lang="en">The status of the data set regarding its completeness (planned, in work or complete).</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;ProductType"/>
+        <inverseOf rdf:resource="&isdc;isStatusOf"/>
+        <equivalentProperty rdf:resource="&gcmd;Dataset_Progress"/>
+    </ObjectProperty>
+    
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#hasTechnicalStaff -->
+
+    <ObjectProperty rdf:about="&isdc;hasTechnicalStaff">
+        <rdfs:label xml:lang="en">has technical staff</rdfs:label>
+        <rdfs:comment xml:lang="en">Something can have technical staff.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;ISDC"/>
+        <rdfs:range rdf:resource="&isdc;TechnicalStaff"/>
+        <rdfs:subPropertyOf rdf:resource="&isdc;hasRole"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#isAuthorOf -->
+
+    <ObjectProperty rdf:about="&isdc;isAuthorOf">
+        <rdfs:label xml:lang="en">is author of</rdfs:label>
+        <rdfs:comment xml:lang="en">A person is author of a scientific or technical publication.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;Author"/>
+        <rdfs:range rdf:resource="&isdc;Paper"/>
+        <inverseOf rdf:resource="&isdc;hasAuthor"/>
+        <rdfs:subPropertyOf rdf:resource="&isdc;isInRoleOf"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#isCarriedBy -->
+
+    <ObjectProperty rdf:about="&isdc;isCarriedBy">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:label xml:lang="en">is carried by</rdfs:label>
+        <rdfs:comment xml:lang="en">An instrument is carried by a platform.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;Instrument"/>
+        <rdfs:range rdf:resource="&isdc;Platform"/>
+        <inverseOf rdf:resource="&isdc;carries"/>
+        <rdfs:subPropertyOf rdf:resource="&isdc;isPartOf"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#isCreatedBy -->
+
+    <ObjectProperty rdf:about="&isdc;isCreatedBy">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:label xml:lang="en">is created by</rdfs:label>
+        <rdfs:comment xml:lang="en">A product type is created by an institution.</rdfs:comment>
+        <rdfs:range rdf:resource="&isdc;Institution"/>
+        <rdfs:domain rdf:resource="&isdc;ProductType"/>
+        <inverseOf rdf:resource="&isdc;creates"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#isDataCenterStaffOf -->
+
+    <ObjectProperty rdf:about="&isdc;isDataCenterStaffOf">
+        <rdfs:label xml:lang="en">is data center staff of</rdfs:label>
+        <rdfs:comment xml:lang="en">A person is data staff of a data center.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;DataProvider"/>
+        <rdfs:range rdf:resource="&isdc;ISDC"/>
+        <rdfs:subPropertyOf rdf:resource="&isdc;isInRoleOf"/>
+        <inverseOf rdf:resource="&isdc;hasDataCenterStaff"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#isDataCreatorOf -->
+
+    <ObjectProperty rdf:about="&isdc;isDataCreatorOf">
+        <rdfs:label xml:lang="en">is data creator of</rdfs:label>
+        <rdfs:comment xml:lang="en">A person is data creator of a data product.</rdfs:comment>
+        <rdfs:range rdf:resource="&isdc;DataProduct"/>
+        <rdfs:domain rdf:resource="&isdc;Person"/>
+        <rdfs:subPropertyOf rdf:resource="&isdc;isInRoleOf"/>
+        <inverseOf rdf:resource="&isdc;hasDataCreator"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#isDataOriginatorOf -->
+
+    <ObjectProperty rdf:about="&isdc;isDataOriginatorOf">
+        <rdfs:label xml:lang="en">is data originator of</rdfs:label>
+        <rdfs:comment xml:lang="en">An institution acts as data creator.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;DataOriginator"/>
+        <rdfs:range rdf:resource="&isdc;DataProduct"/>
+        <rdfs:range rdf:resource="&isdc;ProductType"/>
+        <rdfs:subPropertyOf rdf:resource="&isdc;isInRoleOf"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#isDataProviderOf -->
+
+    <ObjectProperty rdf:about="&isdc;isDataProviderOf">
+        <rdfs:label xml:lang="en">is data provider of</rdfs:label>
+        <rdfs:comment xml:lang="en">An institution acts as data center and is responsible for the management of product types and/or data products.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;DataProduct"/>
+        <rdfs:range rdf:resource="&isdc;Institution"/>
+        <rdfs:domain rdf:resource="&isdc;ProductType"/>
+        <rdfs:subPropertyOf rdf:resource="&isdc;isInRoleOf"/>
+        <inverseOf rdf:resource="&isdc;isDataProviderOf"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#isDefinedBy -->
+
+    <ObjectProperty rdf:about="&isdc;isDefinedBy">
+        <rdfs:label xml:lang="en">is defined by</rdfs:label>
+        <rdfs:comment xml:lang="en">A product type is defined by a project.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;ProductType"/>
+        <rdfs:range rdf:resource="&isdc;Project"/>
+        <inverseOf rdf:resource="&isdc;defines"/>
+    </ObjectProperty>
+    
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#isExplainedBy -->
+
+    <ObjectProperty rdf:about="&isdc;isExplainedBy">
+        <rdfs:label xml:lang="en">is explained by</rdfs:label>
+        <rdfs:comment xml:lang="en">A geo phenomenon is explained by data products or product types.</rdfs:comment>
+        <rdfs:range rdf:resource="&isdc;DataProduct"/>
+        <rdfs:domain rdf:resource="&isdc;GeoPhenomenon"/>
+        <rdfs:range rdf:resource="&isdc;ProductType"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    </ObjectProperty>
+    
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#isEmployedBy -->
+
+    <ObjectProperty rdf:about="&isdc;isEmployedBy">
+        <rdfs:label xml:lang="en">is employed by</rdfs:label>
+        <rdfs:comment xml:lang="en">A person is employed by an institution.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;Person"/>
+        <rdfs:range rdf:resource="&isdc;Institution"/>
+    </ObjectProperty>
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#isFreeKeywordFor -->
+
+    <ObjectProperty rdf:about="&isdc;isFreeKeywordFor">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:label xml:lang="en">is free keyword for</rdfs:label>
+        <rdfs:comment xml:lang="en">A concept scheme and/or a concept is a free keyword for an entity</rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="&isdc;isKeywordFor"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#isGeoLocationFor -->
+
+    <ObjectProperty rdf:about="&isdc;isGeoLocationFor">
+        <rdfs:label xml:lang="en">is geo location for</rdfs:label>
+        <rdfs:comment xml:lang="en">A geonames URI for an Entity.</rdfs:comment>
+    </ObjectProperty>
+    
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#isHomepageOf -->
+
+    <ObjectProperty rdf:about="&isdc;isHomepageOf">
+        <rdfs:label xml:lang="en">has homepage</rdfs:label>
+        <rdfs:comment xml:lang="en">Is homepage of a(n) institution/person/project.</rdfs:comment>
+        <rdfs:range rdf:resource="&isdc;Institution"/>
+        <rdfs:range rdf:resource="&isdc;Person"/>
+        <rdfs:range rdf:resource="&isdc;Project"/>
+    </ObjectProperty>
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#isIDNNodeOf -->
+
+    <ObjectProperty rdf:about="&isdc;isIDNNodeOf">
+        <rdfs:label xml:lang="en">is IDN node of</rdfs:label>
+        <rdfs:comment xml:lang="en">The IDN node of an institution or product type (GCMD DIF).
+</rdfs:comment>
+        <rdfs:range rdf:resource="&isdc;Institution"/>
+        <rdfs:range rdf:resource="&isdc;ProductType"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#isISOTopicCategoryFor -->
+
+    <ObjectProperty rdf:about="&isdc;isISOTopicCategoryFor">
+        <rdfs:label xml:lang="en">is ISO topic category for</rdfs:label>
+        <rdfs:comment xml:lang="en">A concept is a ISO topic category keyword for an entity.</rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="&isdc;isKeywordFor"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#isInRoleOf -->
+
+    <ObjectProperty rdf:about="&isdc;isInRoleOf">
+        <rdfs:label xml:lang="en">is in role of</rdfs:label>
+        <rdfs:comment xml:lang="en">A person or an institution can play a specific role.</rdfs:comment>
+        <rdfs:range rdf:resource="&isdc;ISDC"/>
+        <rdfs:domain rdf:resource="&isdc;Institution"/>
+        <rdfs:domain rdf:resource="&isdc;Person"/>
+        <inverseOf rdf:resource="&isdc;hasRole"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#isInvestigatorOf -->
+
+    <ObjectProperty rdf:about="&isdc;isInvestigatorOf">
+        <rdfs:label xml:lang="en">is investigator of</rdfs:label>
+        <rdfs:comment xml:lang="en">A person is a project leader.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;Investigator"/>
+        <rdfs:range rdf:resource="&isdc;Project"/>
+        <rdfs:subPropertyOf rdf:resource="&isdc;isInRoleOf"/>
+        <inverseOf rdf:resource="&isdc;hasInvestigator"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#isKeywordFor -->
+
+    <ObjectProperty rdf:about="&isdc;isKeywordFor">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:label xml:lang="en">is keyword for</rdfs:label>
+        <rdfs:comment xml:lang="en">A concept scheme and/or a concept is a keyword for an entity. The proper use of the keyword is defined via concept schemes.</rdfs:comment>
+        <rdfs:range rdf:resource="&isdc;ISDC"/>
+        <rdfs:domain rdf:resource="&skos;Concept"/>
+        <rdfs:domain rdf:resource="&skos;ConceptScheme"/>
+        <inverseOf rdf:resource="&isdc;hasKeyword"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#isLanguageFor -->
+
+    <ObjectProperty rdf:about="&isdc;isLanguageFor">
+        <rdfs:label xml:lang="en">is language for</rdfs:label>
+        <rdfs:comment xml:lang="en">A language for an entity.</rdfs:comment>
+        <rdfs:range rdf:resource="&isdc;ISDC"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#isLocatedIn -->
+
+    <ObjectProperty rdf:about="&isdc;isLocatedIn">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:label xml:lang="en">is located in</rdfs:label>
+        <rdfs:comment xml:lang="en">An entity is located in another entity (e.g. an institution is located in a country).</rdfs:comment>
+        <rdfs:range rdf:resource="&skos;Concept"/>
+        <rdfs:subPropertyOf rdf:resource="&isdc;hasKeyword"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#isLocationKeywordFor -->
+
+    <ObjectProperty rdf:about="&isdc;isLocationKeywordFor">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:label xml:lang="en">is location keyword for</rdfs:label>
+        <rdfs:comment xml:lang="en">A concept scheme and/or a concept is a keyword for an entity.</rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="&isdc;isKeywordFor"/>
+        <inverseOf rdf:resource="&isdc;hasLocationKeyword"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#isMeasuredBy -->
+
+    <ObjectProperty rdf:about="&isdc;isMeasuredBy">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:label xml:lang="en">is measured by</rdfs:label>
+        <rdfs:comment xml:lang="en">Product types and data products are measured by an instrument.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;DataProduct"/>
+        <rdfs:domain rdf:resource="&isdc;ProductType"/>
+        <rdfs:range rdf:resource="&isdc;Instrument"/>
+        <rdfs:subPropertyOf rdf:resource="&isdc;isPartOf"/>
+        <inverseOf rdf:resource="&isdc;measuresDataFor"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#isMetadataCreatorOf -->
+
+    <ObjectProperty rdf:about="&isdc;isMetadataCreatorOf">
+        <rdfs:label xml:lang="en">is metadata creator of</rdfs:label>
+        <rdfs:comment xml:lang="en">A person creates meta data for a ISDC entities, such as product type or data product.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;MetadataCreator"/>
+        <rdfs:range rdf:resource="&isdc;MetadataPublication"/>
+        <rdfs:subPropertyOf rdf:resource="&isdc;isInRoleOf"/>
+        <inverseOf rdf:resource="&isdc;hasMetadataCreator"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#isOperatedBy -->
+
+    <ObjectProperty rdf:about="&isdc;isOperatedBy">
+        <rdfs:label xml:lang="en">is operated by</rdfs:label>
+        <rdfs:comment xml:lang="en">An instrument is operated by an institution.</rdfs:comment>
+        <rdfs:range rdf:resource="&isdc;Institution"/>
+        <rdfs:domain rdf:resource="&isdc;Instrument"/>
+        <inverseOf rdf:resource="&isdc;operates"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#isPartOf -->
+
+    <ObjectProperty rdf:about="&isdc;isPartOf">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:label xml:lang="en">is part of</rdfs:label>
+        <rdfs:comment xml:lang="en">An entity is part of another entity.</rdfs:comment>
+        <rdfs:range rdf:resource="&isdc;ISDC"/>
+        <inverseOf rdf:resource="&isdc;supplies"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#isPhoneNumberOf -->
+
+    <ObjectProperty rdf:about="&isdc;isPhoneNumberOf">
+        <rdfs:label xml:lang="en">is phone number of</rdfs:label>
+        <rdfs:comment xml:lang="en">Is phone number of a person or institution.</rdfs:comment>
+        <rdfs:range rdf:resource="&isdc;Institution"/>
+        <rdfs:range rdf:resource="&isdc;Person"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#isProcessedBy -->
+
+    <ObjectProperty rdf:about="&isdc;isProcessedBy">
+        <rdfs:label xml:lang="en">is processed by</rdfs:label>
+        <rdfs:comment xml:lang="en">A data product is processed by an institution.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;DataProduct"/>
+        <rdfs:range rdf:resource="&isdc;Institution"/>
+        <inverseOf rdf:resource="&isdc;processes"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#isProductTypeFor -->
+
+    <ObjectProperty rdf:about="&isdc;isProductTypeFor">
+        <rdfs:label xml:lang="en">is product type for</rdfs:label>
+        <rdfs:comment xml:lang="en">A product type classifies a data product.</rdfs:comment>
+        <rdfs:range rdf:resource="&isdc;DataProduct"/>
+        <rdfs:domain rdf:resource="&isdc;ProductType"/>
+        <inverseOf rdf:resource="&isdc;hasProductType"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#isProvidedBy -->
+
+    <ObjectProperty rdf:about="&isdc;isProvidedBy">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:label xml:lang="en">is provided by</rdfs:label>
+        <rdfs:comment xml:lang="en">A platform is provided by a project.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;Platform"/>
+        <rdfs:range rdf:resource="&isdc;Project"/>
+        <rdfs:subPropertyOf rdf:resource="&isdc;isPartOf"/>
+        <inverseOf rdf:resource="&isdc;provides"/>
+    </ObjectProperty>
+    
+
+
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#isReleasePlaceOf -->
+
+    <ObjectProperty rdf:about="&isdc;isReleasePlaceOf">
+        <rdfs:label xml:lang="en">is release place of</rdfs:label>
+        <rdfs:comment xml:lang="en">A city is a relase location (GCMD).</rdfs:comment>
+        <rdfs:range rdf:resource="&isdc;DataProduct"/>
+        <rdfs:range rdf:resource="&isdc;ProductType"/>
+        <inverseOf rdf:resource="&isdc;hasRealeasePlace"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#isRequiredBy -->
+
+    <ObjectProperty rdf:about="&isdc;isRequiredBy">
+        <rdfs:label xml:lang="en">is required by</rdfs:label>
+        <rdfs:comment xml:lang="en">A platform is required by (hosting the instrument) a product type.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;Platform"/>
+        <rdfs:range rdf:resource="&isdc;ProductType"/>
+        <inverseOf rdf:resource="&isdc;requires"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#isResearchFocusOf -->
+
+    <ObjectProperty rdf:about="&isdc;isResearchFocusOf">
+        <rdfs:label xml:lang="en">is research focus of</rdfs:label>
+        <rdfs:comment xml:lang="en">A concept is a research focus (keyword) of an entity.</rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="&isdc;isKeywordFor"/>
+        <inverseOf rdf:resource="&isdc;hasResearchFocus"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#isRunBy -->
+
+    <ObjectProperty rdf:about="&isdc;isRunBy">
+        <rdfs:label xml:lang="en">is run by</rdfs:label>
+        <rdfs:comment xml:lang="en">A platform is run by an institution.</rdfs:comment>
+        <rdfs:range rdf:resource="&isdc;Institution"/>
+        <rdfs:domain rdf:resource="&isdc;Platform"/>
+        <inverseOf rdf:resource="&isdc;runs"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#isScienceKeywordFor -->
+
+    <ObjectProperty rdf:about="&isdc;isScienceKeywordFor">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:label xml:lang="en">is science keyword for</rdfs:label>
+        <rdfs:comment xml:lang="en">A concept scheme and/or a concept is a keyword for an entity.</rdfs:comment>
+        <inverseOf rdf:resource="&isdc;hasScienceKeyword"/>
+        <rdfs:subPropertyOf rdf:resource="&isdc;isKeywordFor"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#isServiceKeywordFor -->
+
+    <ObjectProperty rdf:about="&isdc;isServiceKeywordFor">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:label xml:lang="en">is service keyword for</rdfs:label>
+        <rdfs:comment xml:lang="en">A concept scheme and/or a concept is a keyword for an entity.</rdfs:comment>
+        <inverseOf rdf:resource="&isdc;hasServiceKeyword"/>
+        <rdfs:subPropertyOf rdf:resource="&isdc;isKeywordFor"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#isStatusOf -->
+
+    <ObjectProperty rdf:about="&isdc;isStatusOf">
+        <rdfs:label xml:lang="en">is status of</rdfs:label>
+        <rdfs:comment xml:lang="en">Is processing status of a product type.</rdfs:comment>
+        <rdfs:range rdf:resource="&isdc;ProductType"/>
+        <inverseOf rdf:resource="&isdc;hasStatus"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#isStudiedBy -->
+
+    <ObjectProperty rdf:about="&isdc;isStudiedBy">
+        <rdfs:label xml:lang="en">is studied by</rdfs:label>
+        <rdfs:comment xml:lang="en">A geo phenomenon is studied by an entity (e.g. an institution).</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;GeoPhenomenon"/>
+        <rdfs:range rdf:resource="&isdc;ISDC"/>
+        <inverseOf rdf:resource="&isdc;studies"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#isSupervisedBy -->
+
+    <ObjectProperty rdf:about="&isdc;isSupervisedBy">
+        <rdfs:label xml:lang="en">is supervised by</rdfs:label>
+        <rdfs:comment xml:lang="en">A project is supervised by an institution.</rdfs:comment>
+        <rdfs:range rdf:resource="&isdc;Institution"/>
+        <rdfs:domain rdf:resource="&isdc;Project"/>
+        <inverseOf rdf:resource="&isdc;supervises"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#isTechnicalStaffOf -->
+
+    <ObjectProperty rdf:about="&isdc;isTechnicalStaffOf">
+        <rdfs:label xml:lang="en">is technical staff of</rdfs:label>
+        <rdfs:comment xml:lang="en">A person is technical staff of an institution..</rdfs:comment>
+        <rdfs:range rdf:resource="&isdc;ISDC"/>
+        <rdfs:domain rdf:resource="&isdc;TechnicalStaff"/>
+        <rdfs:subPropertyOf rdf:resource="&isdc;isInRoleOf"/>
+        <inverseOf rdf:resource="&isdc;hasTechnicalStaff"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#locates -->
+
+    <ObjectProperty rdf:about="&isdc;locates">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:label xml:lang="en">locates</rdfs:label>
+        <rdfs:comment xml:lang="en">An entity locates another entity (e.g. a country locates an institution).</rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="&isdc;isKeywordFor"/>
+        <inverseOf rdf:resource="&isdc;isLocatedIn"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#measuresDataFor -->
+
+    <ObjectProperty rdf:about="&isdc;measuresDataFor">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:label xml:lang="en">measures data for</rdfs:label>
+        <rdfs:comment xml:lang="en">An instrument measures data for a product type and the data product.</rdfs:comment>
+        <rdfs:range rdf:resource="&isdc;DataProduct"/>
+        <rdfs:domain rdf:resource="&isdc;Instrument"/>
+        <rdfs:range rdf:resource="&isdc;ProductType"/>
+        <rdfs:subPropertyOf rdf:resource="&isdc;supplies"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#operates -->
+
+    <ObjectProperty rdf:about="&isdc;operates">
+        <rdfs:label xml:lang="en">operates</rdfs:label>
+        <rdfs:comment xml:lang="en">An institution operates an instrument.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;Institution"/>
+        <rdfs:range rdf:resource="&isdc;Instrument"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#processes -->
+
+    <ObjectProperty rdf:about="&isdc;processes">
+        <rdfs:label xml:lang="en">processes</rdfs:label>
+        <rdfs:comment xml:lang="en">An institution processes a data product.</rdfs:comment>
+        <rdfs:range rdf:resource="&isdc;DataProduct"/>
+        <rdfs:domain rdf:resource="&isdc;Institution"/>
+        <inverseOf rdf:resource="&isdc;isProcessedBy"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#provides -->
+
+    <ObjectProperty rdf:about="&isdc;provides">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:label xml:lang="en">provides</rdfs:label>
+        <rdfs:comment xml:lang="en">A project provides a platform.</rdfs:comment>
+        <rdfs:range rdf:resource="&isdc;Platform"/>
+        <rdfs:domain rdf:resource="&isdc;Project"/>
+        <rdfs:subPropertyOf rdf:resource="&isdc;supplies"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#requires -->
+
+    <ObjectProperty rdf:about="&isdc;requires">
+        <rdfs:label xml:lang="en">requires</rdfs:label>
+        <rdfs:comment xml:lang="en">A product type (the instrument, which measures the data) requires a platform.</rdfs:comment>
+        <rdfs:range rdf:resource="&isdc;Platform"/>
+        <rdfs:domain rdf:resource="&isdc;ProductType"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#runs -->
+
+    <ObjectProperty rdf:about="&isdc;runs">
+        <rdfs:label xml:lang="en">runs</rdfs:label>
+        <rdfs:comment xml:lang="en">An institution runs a platform.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;Institution"/>
+        <rdfs:range rdf:resource="&isdc;Platform"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#studies -->
+
+    <ObjectProperty rdf:about="&isdc;studies">
+        <rdfs:label xml:lang="en">studies</rdfs:label>
+        <rdfs:comment xml:lang="en">An entity (e.g. an institution) studies geo phenomena.</rdfs:comment>
+        <rdfs:range rdf:resource="&isdc;GeoPhenomenon"/>
+        <rdfs:domain rdf:resource="&isdc;ISDC"/>
+        <inverseOf rdf:resource="&isdc;isStudiedBy"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#supervises -->
+
+    <ObjectProperty rdf:about="&isdc;supervises">
+        <rdfs:label xml:lang="en">supervises</rdfs:label>
+        <rdfs:comment xml:lang="en">An institution supervises a project.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;Institution"/>
+        <rdfs:range rdf:resource="&isdc;Project"/>
+        <inverseOf rdf:resource="&isdc;isSupervisedBy"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#supplies -->
+
+    <ObjectProperty rdf:about="&isdc;supplies">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:label xml:lang="en">supplies</rdfs:label>
+        <rdfs:comment xml:lang="en">An entity supplies another entity.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;ISDC"/>
+    </ObjectProperty>
+    
+
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     --> 
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#abstract -->
+
+    <DatatypeProperty rdf:about="&isdc;abstract">
+        <rdfs:label xml:lang="en">abstract</rdfs:label>
+        <rdfs:comment xml:lang="en">The abstract of an entity.</rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="&isdc;summary"/>
+        <equivalentProperty rdf:resource="&gcmd;Abstract"/>
+        <equivalentProperty rdf:resource="&bibo;abstract"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#accessConstraints -->
+
+    <DatatypeProperty rdf:about="&isdc;accessConstraints">
+        <rdfs:label xml:lang="en">access constraints</rdfs:label>
+        <rdfs:comment xml:lang="en">Access constraints descibe the access rights.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;DataProduct"/>
+        <rdfs:domain rdf:resource="&isdc;ProductType"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <equivalentProperty rdf:resource="&gcmd;Access_Constraints"/>
+    </DatatypeProperty>
+    
+
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#address -->
+
+    <DatatypeProperty rdf:about="&isdc;address">
+        <rdfs:label xml:lang="en">address</rdfs:label>
+        <rdfs:comment xml:lang="en">Address form institution or person.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;Institution"/>
+        <rdfs:domain rdf:resource="&isdc;Person"/>
+        <equivalentProperty rdf:resource="&gcmd;Address"/>
+    </DatatypeProperty>
+
+    
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#creationDate -->
+
+    <DatatypeProperty rdf:about="&isdc;creationDate">
+        <rdfs:label xml:lang="en">creation date</rdfs:label>
+        <rdfs:comment xml:lang="en">A publication, such as a product type metadata docuemnt has a creation date.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;ISDC"/>
+        <equivalentProperty rdf:resource="&gcmd;DIF_Creation_Date"/>
+    </DatatypeProperty>
+
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#easternmostLongitude -->
+
+    <DatatypeProperty rdf:about="&isdc;easternmostLongitude">
+        <rdfs:label xml:lang="en">easternmost longitude</rdfs:label>
+        <rdfs:comment xml:lang="en">Easternmost longitude of a spatial coverage.</rdfs:comment>
+        <equivalentProperty rdf:resource="&gcmd;Easternmost_Longitude"/>
+    </DatatypeProperty>
+
+
+   
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#email -->
+
+    <DatatypeProperty rdf:about="&isdc;email">
+        <rdfs:label xml:lang="en">email</rdfs:label>
+        <rdfs:comment xml:lang="en">Email address of a person or institution.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;Institution"/>
+        <rdfs:domain rdf:resource="&isdc;Person"/>
+    </DatatypeProperty>
+    
+
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#fax -->
+
+    <DatatypeProperty rdf:about="&isdc;fax">
+        <rdfs:label xml:lang="en">fax number</rdfs:label>
+        <rdfs:comment xml:lang="en">The fax number of a person or an institution.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;Institution"/>
+        <rdfs:domain rdf:resource="&isdc;Person"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#firstName -->
+
+    <DatatypeProperty rdf:about="&isdc;firstName">
+        <rdfs:label xml:lang="en">first name</rdfs:label>
+        <rdfs:comment xml:lang="en">First name of a person.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;Person"/>
+        <equivalentProperty rdf:resource="&gcmd;First_Name"/>
+        <equivalentProperty rdf:resource="&foaf;firstName"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#futureRevisionDate -->
+
+    <DatatypeProperty rdf:about="&isdc;futureRevisionDate">
+        <rdfs:label xml:lang="en">future revision date</rdfs:label>
+        <rdfs:comment xml:lang="en">A publication, such as product type metadata document has a future revision date.</rdfs:comment>
+        <equivalentProperty rdf:resource="&gcmd;Future_DIF_Revision_Date"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#hasRevisionHistory -->
+
+    <DatatypeProperty rdf:about="&isdc;hasRevisionHistory">
+        <rdfs:label xml:lang="en">has revision history</rdfs:label>
+        <rdfs:comment xml:lang="en">An entity has a revision history.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;ISDC"/>
+        <equivalentProperty rdf:resource="&gcmd;DIF_Revision_History"/>
+    </DatatypeProperty>
+
+   
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#image -->
+
+    <DatatypeProperty rdf:about="&isdc;image">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label>image</rdfs:label>
+        <rdfs:label xml:lang="en">image</rdfs:label>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#lastName -->
+
+    <DatatypeProperty rdf:about="&isdc;lastName">
+        <rdfs:label xml:lang="en">last name</rdfs:label>
+        <rdfs:comment xml:lang="en">Last name of a person.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;Person"/>
+        <equivalentProperty rdf:resource="&gcmd;Last_Name"/>
+        <equivalentProperty rdf:resource="&foaf;familyName"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#lastRevisionDate -->
+
+    <DatatypeProperty rdf:about="&isdc;lastRevisionDate">
+        <rdfs:label xml:lang="en">last revison date</rdfs:label>
+        <rdfs:comment xml:lang="en">A publication, such as product type metadata document has a last revision date.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;ISDC"/>
+        <equivalentProperty rdf:resource="&gcmd;Last_DIF_Revision_Date"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#longName -->
+
+    <DatatypeProperty rdf:about="&isdc;longName">
+        <rdfs:label xml:lang="en">long name</rdfs:label>
+        <rdfs:comment xml:lang="en">The full name of an entity. Used for long names of instruments, platforms and GCMD entry IDs.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;DataProduct"/>
+        <rdfs:domain rdf:resource="&isdc;Institution"/>
+        <rdfs:domain rdf:resource="&isdc;Instrument"/>
+        <rdfs:domain rdf:resource="&isdc;Platform"/>
+        <rdfs:domain rdf:resource="&isdc;ProductType"/>
+        <rdfs:domain rdf:resource="&isdc;Project"/>
+        <equivalentProperty rdf:resource="&gcmd;Entry_Title"/>
+        <equivalentProperty rdf:resource="&gcmd;Long_Name_Project"/>
+        <equivalentProperty rdf:resource="&gcmd;Long_Name_Sensor"/>
+        <equivalentProperty rdf:resource="&gcmd;Long_Name_Source"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#maximumAltitude -->
+
+    <DatatypeProperty rdf:about="&isdc;maximumAltitude">
+        <rdfs:label xml:lang="en">maximum altitude</rdfs:label>
+        <rdfs:comment xml:lang="en">Maximum altitude of a spatial coverage.</rdfs:comment>
+        <equivalentProperty rdf:resource="&gcmd;Maximum_Altitude"/>
+    </DatatypeProperty>
+
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#maximumDepth -->
+
+    <DatatypeProperty rdf:about="&isdc;maximumDepth">
+        <rdfs:label xml:lang="en">maximum depth</rdfs:label>
+        <rdfs:comment xml:lang="en">Maximum depth of a spatial coverage.</rdfs:comment>
+        <equivalentProperty rdf:resource="&gcmd;Maximum_Depth"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#metadataName -->
+
+    <DatatypeProperty rdf:about="&isdc;metadataName">
+        <rdfs:label xml:lang="en">metadata name</rdfs:label>
+        <rdfs:comment xml:lang="en">This field is used to identify the current DIF standard name.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;ProductType"/>
+        <equivalentProperty rdf:resource="&gcmd;Metadata_Name"/>
+    </DatatypeProperty>
+    
+
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#metadataVersion -->
+
+    <DatatypeProperty rdf:about="&isdc;metadataVersion">
+        <rdfs:label xml:lang="en">metadata version</rdfs:label>
+        <rdfs:comment xml:lang="en">This field is used to identify the current DIF metadata standard.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;ProductType"/>
+        <equivalentProperty rdf:resource="&gcmd;Metadata_Version"/>
+    </DatatypeProperty>
+
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#middleName -->
+
+    <DatatypeProperty rdf:about="&isdc;middleName">
+        <rdfs:label xml:lang="en">middle name</rdfs:label>
+        <rdfs:comment xml:lang="en">Middle name of a person.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;Person"/>
+        <equivalentProperty rdf:resource="&gcmd;Middle_Name"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#minimumAltitude -->
+
+    <DatatypeProperty rdf:about="&isdc;minimumAltitude">
+        <rdfs:label xml:lang="en">minimum altitude</rdfs:label>
+        <rdfs:comment xml:lang="en">Minimum altitude of a spatial coverage.</rdfs:comment>
+        <equivalentProperty rdf:resource="&gcmd;Minimum_Altitude"/>
+    </DatatypeProperty>
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#minimumDepth -->
+
+    <DatatypeProperty rdf:about="&isdc;minimumDepth">
+        <rdfs:label xml:lang="en">minimum depth</rdfs:label>
+        <rdfs:comment xml:lang="en">Minimum depth of a spatial coverage.</rdfs:comment>
+        <equivalentProperty rdf:resource="&gcmd;Minimum_Depth"/>
+    </DatatypeProperty>
+    
+
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#name -->
+
+    <DatatypeProperty rdf:about="&isdc;name">
+        <rdfs:label xml:lang="en">name</rdfs:label>
+        <rdfs:comment xml:lang="en">Name of an institution or a project.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;Institution"/>
+        <rdfs:domain rdf:resource="&isdc;Project"/>
+    </DatatypeProperty>
+
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#northernmostLatitude -->
+
+    <DatatypeProperty rdf:about="&isdc;northernmostLatitude">
+        <rdfs:label xml:lang="en">northernmost latitude</rdfs:label>
+        <rdfs:comment xml:lang="en">Northernmost latitude of a spatial coverage.</rdfs:comment>
+        <equivalentProperty rdf:resource="&gcmd;Northernmost_Latitude"/>
+    </DatatypeProperty>
+
+    
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#preferredName -->
+
+    <DatatypeProperty rdf:about="&isdc;preferredName">
+        <rdfs:label xml:lang="en">preferred name</rdfs:label>
+        <rdfs:comment xml:lang="en">Preferred name of an institution.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;Institution"/>
+        <equivalentProperty rdf:resource="&gnd;preferredNameForTheCorporateBody"/>
+    </DatatypeProperty>
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#presentationForm -->
+
+    <DatatypeProperty rdf:about="&isdc;presentationForm">
+        <rdfs:label xml:lang="en">presentation form</rdfs:label>
+        <rdfs:comment xml:lang="en">The data presentation form (e.g. digital, table etc.).</rdfs:comment>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#purpose -->
+
+    <DatatypeProperty rdf:about="&isdc;purpose">
+        <rdfs:label xml:lang="en">purpose</rdfs:label>
+        <rdfs:comment xml:lang="en">The purpose of an entity.</rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="&isdc;summary"/>
+        <equivalentProperty rdf:resource="&gcmd;Purpose"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#quality -->
+
+    <DatatypeProperty rdf:about="&isdc;quality">
+        <rdfs:label xml:lang="en">quality</rdfs:label>
+        <rdfs:comment xml:lang="en">Quality of data products and product types.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;DataProduct"/>
+        <rdfs:domain rdf:resource="&isdc;ProductType"/>
+        <equivalentProperty rdf:resource="&gcmd;Quality"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#releasePeriod -->
+
+    <DatatypeProperty rdf:about="&isdc;releasePeriod">
+        <rdfs:label xml:lang="en">release period</rdfs:label>
+        <rdfs:comment xml:lang="en">The release period of a dataset.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;ProductType"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#seriesName -->
+
+    <DatatypeProperty rdf:about="&isdc;seriesName">
+        <rdfs:label xml:lang="en">series name</rdfs:label>
+        <rdfs:comment xml:lang="en">The series name of a dataset.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;ProductType"/>
+        <equivalentProperty rdf:resource="&gcmd;Dataset_Series_Name"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#shortName -->
+
+    <DatatypeProperty rdf:about="&isdc;shortName">
+        <rdfs:label xml:lang="en">short name</rdfs:label>
+        <rdfs:comment xml:lang="en">The abbreviated name of an entity. Used for sjort names of instruments, platforms and GCMD entry IDs.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;DataProduct"/>
+        <rdfs:domain rdf:resource="&isdc;Institution"/>
+        <rdfs:domain rdf:resource="&isdc;Instrument"/>
+        <rdfs:domain rdf:resource="&isdc;Platform"/>
+        <rdfs:domain rdf:resource="&isdc;ProductType"/>
+        <rdfs:domain rdf:resource="&isdc;Project"/>
+        <equivalentProperty rdf:resource="&gcmd;Entry_ID"/>
+        <equivalentProperty rdf:resource="&gcmd;Short_Name_Project"/>
+        <equivalentProperty rdf:resource="&gcmd;Short_Name_Sensor"/>
+        <equivalentProperty rdf:resource="&gcmd;Short_Name_Source"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#southernmostLatitude -->
+
+    <DatatypeProperty rdf:about="&isdc;southernmostLatitude">
+        <rdfs:label xml:lang="en">southermost latitude</rdfs:label>
+        <rdfs:comment xml:lang="en">Suthernmost latitude of a spatial coverage.</rdfs:comment>
+        <equivalentProperty rdf:resource="&gcmd;Southernmost_Latitude"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#startDate -->
+
+    <DatatypeProperty rdf:about="&isdc;startDate">
+        <rdfs:label xml:lang="en">start date</rdfs:label>
+        <rdfs:comment xml:lang="en">The start date of en entity (e.g. a project).</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;DataProduct"/>
+        <rdfs:domain rdf:resource="&isdc;ProductType"/>
+        <equivalentProperty rdf:resource="&gcmd;Start_Date"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#stopDate -->
+
+    <DatatypeProperty rdf:about="&isdc;stopDate">
+        <rdfs:label xml:lang="en">stop date</rdfs:label>
+        <rdfs:comment xml:lang="en">The stop date of en entity (e.g. a project).</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;DataProduct"/>
+        <rdfs:domain rdf:resource="&isdc;ProductType"/>
+        <equivalentProperty rdf:resource="&gcmd;Stop_Date"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#summary -->
+
+    <DatatypeProperty rdf:about="&isdc;summary">
+        <rdfs:label xml:lang="en">summary</rdfs:label>
+        <rdfs:comment xml:lang="en">The summary of an entity.</rdfs:comment>
+        <equivalentProperty rdf:resource="&gcmd;Summary"/>
+    </DatatypeProperty>
+    
+
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#useConstraints -->
+
+    <DatatypeProperty rdf:about="&isdc;useConstraints">
+        <rdfs:label xml:lang="en">use constraints</rdfs:label>
+        <rdfs:comment xml:lang="en">Use constraints describe the usage of the data products and product types.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;DataProduct"/>
+        <rdfs:domain rdf:resource="&isdc;ProductType"/>
+        <equivalentProperty rdf:resource="&gcmd;Use_Constraints"/>
+    </DatatypeProperty>
+    
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#variantName -->
+
+    <DatatypeProperty rdf:about="&isdc;variantName">
+        <rdfs:label xml:lang="en">variant name</rdfs:label>
+        <rdfs:comment xml:lang="en">Variant name of an institution.</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;Institution"/>
+        <equivalentProperty rdf:resource="&gnd;variantNameForTheCorporateBody"/>
+    </DatatypeProperty>
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#version -->
+
+    <DatatypeProperty rdf:about="&isdc;version">
+        <rdfs:label xml:lang="en">version</rdfs:label>
+        <rdfs:comment xml:lang="en">Version of a product type</rdfs:comment>
+        <rdfs:domain rdf:resource="&isdc;ProductType"/>
+        <equivalentProperty rdf:resource="&gcmd;Version"/>
+    </DatatypeProperty>
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#westernmostLongitude -->
+
+    <DatatypeProperty rdf:about="&isdc;westernmostLongitude">
+        <rdfs:label xml:lang="en">westernmost longitude</rdfs:label>
+        <rdfs:comment xml:lang="en">Westernmost longitude of a spatial coverage.</rdfs:comment>
+        <equivalentProperty rdf:resource="&gcmd;Westernmost_Longitude"/>
+    </DatatypeProperty>
+    
+    
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#Author -->
+
+    <Class rdf:about="&isdc;Author">
+        <rdfs:label xml:lang="en">Author</rdfs:label>
+        <rdfs:comment xml:lang="en">An author is a creator of a scientific or technical publication.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="&isdc;Person"/>
+    </Class>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#DataCenterStaff -->
+
+    <Class rdf:about="&isdc;DataCenterStaff">
+        <rdfs:label xml:lang="en">Data Center Staff</rdfs:label>
+        <rdfs:comment xml:lang="en">A data center staff works in a data center and has the role as contact person.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="&isdc;Person"/>
+    </Class>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#DataCreator -->
+
+    <Class rdf:about="&isdc;DataCreator">
+        <rdfs:label xml:lang="en">Data Creator</rdfs:label>
+        <rdfs:comment xml:lang="en">A data creator processes the data and creates data products and product types.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="&isdc;Person"/>
+    </Class>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#DataOriginator -->
+
+    <Class rdf:about="&isdc;DataOriginator">
+        <rdfs:label xml:lang="en">Data Originator</rdfs:label>
+        <rdfs:comment xml:lang="en">A data originator creates product types and data products.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="&isdc;Institution"/>
+    </Class>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#DataProduct -->
+
+    <Class rdf:about="&isdc;DataProduct">
+        <rdfs:label xml:lang="en">Data Product</rdfs:label>
+        <rdfs:comment xml:lang="en">Data products are the data files and/or data granuals related to specific product types.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="&isdc;ISDC"/>
+        <disjointWith rdf:resource="&isdc;Institution"/>
+        <disjointWith rdf:resource="&isdc;Instrument"/>
+        <disjointWith rdf:resource="&isdc;Person"/>
+        <disjointWith rdf:resource="&isdc;Phenomenon"/>
+        <disjointWith rdf:resource="&isdc;Platform"/>
+        <disjointWith rdf:resource="&isdc;ProductType"/>
+        <disjointWith rdf:resource="&isdc;Project"/>
+        <disjointWith rdf:resource="&isdc;Publication"/>
+    </Class>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#DataProvider -->
+
+    <Class rdf:about="&isdc;DataProvider">
+        <rdfs:label xml:lang="en">Data Provider</rdfs:label>
+        <rdfs:comment xml:lang="en">A data provider is a role of an institution.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="&isdc;Institution"/>
+    </Class>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#DataPublication -->
+
+    <Class rdf:about="&isdc;DataPublication">
+        <rdfs:label xml:lang="en">Data Publication</rdfs:label>
+        <rdfs:comment xml:lang="en">A data publication is a document describing the data files or granuals.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="&isdc;MetadataPublication"/>
+    </Class>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#GeoPhenomenon -->
+
+    <Class rdf:about="&isdc;GeoPhenomenon">
+        <rdfs:label xml:lang="en">Geo Phenomenon</rdfs:label>
+        <rdfs:comment xml:lang="en">A geo phenomenon is a geo or near earth related occurence.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="&isdc;Phenomenon"/>
+        <disjointWith rdf:resource="&isdc;Person"/>
+    </Class>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#Gravimeter -->
+
+    <Class rdf:about="&isdc;Gravimeter">
+        <rdfs:label xml:lang="en">Gravimeter</rdfs:label>
+        <rdfs:comment xml:lang="en">A gravimeter is an instrument used in for measuring the gravitational field..</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="&isdc;Instrument"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&isdc;isCarriedBy"/>
+                <someValuesFrom rdf:resource="&isdc;SuperconductingGravimeterStation"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <disjointWith rdf:resource="&isdc;MeteorologicalInstrument"/>
+    </Class>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#ISDC -->
+
+    <Class rdf:about="&isdc;ISDC">
+        <rdfs:label xml:lang="en">ISDC</rdfs:label>
+        <rdfs:comment xml:lang="en">The ISDC ontology models main parts of the geoscience data and information life cycle. Related use cases are the representation of the ISDC data and information repsository as well as cross-domain data integration and retrieval.</rdfs:comment>
+    </Class>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#Institution -->
+
+    <Class rdf:about="&isdc;Institution">
+        <rdfs:label xml:lang="en">Institution</rdfs:label>
+        <rdfs:comment xml:lang="en">Institution is an entity belonging to the geoscience data and information life cycle. Institutions are research centers, universities, ...</rdfs:comment>
+        <equivalentClass rdf:resource="&foaf;Organization"/>
+        <rdfs:subClassOf rdf:resource="&isdc;ISDC"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&isdc;hasLocationKeyword"/>
+                <someValuesFrom rdf:resource="&skos;Concept"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&isdc;supervises"/>
+                <someValuesFrom rdf:resource="&isdc;Project"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <disjointWith rdf:resource="&isdc;DataProduct"/>
+        <disjointWith rdf:resource="&isdc;Instrument"/>
+        <disjointWith rdf:resource="&isdc;Person"/>
+        <disjointWith rdf:resource="&isdc;Phenomenon"/>
+        <disjointWith rdf:resource="&isdc;Platform"/>
+        <disjointWith rdf:resource="&isdc;ProductType"/>
+        <disjointWith rdf:resource="&isdc;Project"/>
+        <disjointWith rdf:resource="&isdc;Publication"/>
+    </Class>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#Instrument -->
+
+    <Class rdf:about="&isdc;Instrument">
+        <rdfs:label xml:lang="en">Instrument</rdfs:label>
+        <rdfs:comment xml:lang="en">An Instrument is an entity belonging to the geoscience data and information life cycle. Instruments are used for measuring geophysical data.Instruments are hosted by platforms.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="&isdc;ISDC"/>
+        <disjointWith rdf:resource="&isdc;DataProduct"/>
+        <disjointWith rdf:resource="&isdc;Institution"/>
+        <disjointWith rdf:resource="&isdc;Person"/>
+        <disjointWith rdf:resource="&isdc;Phenomenon"/>
+        <disjointWith rdf:resource="&isdc;Platform"/>
+        <disjointWith rdf:resource="&isdc;ProductType"/>
+        <disjointWith rdf:resource="&isdc;Project"/>
+        <disjointWith rdf:resource="&isdc;Publication"/>
+    </Class>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#Investigator -->
+
+    <Class rdf:about="&isdc;Investigator">
+        <rdfs:label xml:lang="en">Investigator</rdfs:label>
+        <rdfs:comment xml:lang="en">An investigator is responsible for project.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="&isdc;Person"/>
+    </Class>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#MetadataCreator -->
+
+    <Class rdf:about="&isdc;MetadataCreator">
+        <rdfs:label xml:lang="en">Metadata Creator</rdfs:label>
+        <rdfs:comment xml:lang="en">A metadata creator is an author of metadata documents.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="&isdc;Person"/>
+    </Class>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#MetadataPublication -->
+
+    <Class rdf:about="&isdc;MetadataPublication">
+        <rdfs:label xml:lang="en">Metadata Publication</rdfs:label>
+        <rdfs:comment xml:lang="en">A metadata publication is a metadata document describing the ISDC entities.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="&isdc;Publication"/>
+    </Class>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#MeteorologicalInstrument -->
+
+    <Class rdf:about="&isdc;MeteorologicalInstrument">
+        <rdfs:label xml:lang="en">Meteorological Instrument</rdfs:label>
+        <rdfs:comment xml:lang="en">Meteorological instruments are used for the measurement of meteorlogical data. These instruments are also used in the Global Geodynamic Project (GGP), in this context also named as auxiliary instrument.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="&isdc;Instrument"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&isdc;isCarriedBy"/>
+                <someValuesFrom rdf:resource="&isdc;SuperconductingGravimeterStation"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#Paper -->
+
+    <Class rdf:about="&isdc;Paper">
+        <rdfs:label xml:lang="en">Paper</rdfs:label>
+        <rdfs:comment xml:lang="en">A paper is a (scientific) publication.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="&isdc;Publication"/>
+    </Class>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#Person -->
+
+    <Class rdf:about="&isdc;Person">
+        <rdfs:label xml:lang="en">Person</rdfs:label>
+        <rdfs:comment xml:lang="en">A person is an entity belonging to the geoscience data and information life cycle. Persons are working in different roles in institutions.</rdfs:comment>
+        <equivalentClass rdf:resource="&foaf;Person"/>
+        <rdfs:subClassOf rdf:resource="&isdc;ISDC"/>
+        <disjointWith rdf:resource="&isdc;DataProduct"/>
+        <disjointWith rdf:resource="&isdc;Institution"/>
+        <disjointWith rdf:resource="&isdc;Instrument"/>
+        <disjointWith rdf:resource="&isdc;Phenomenon"/>
+        <disjointWith rdf:resource="&isdc;Platform"/>
+        <disjointWith rdf:resource="&isdc;ProductType"/>
+        <disjointWith rdf:resource="&isdc;Project"/>
+        <disjointWith rdf:resource="&isdc;Publication"/>
+    </Class>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#Phenomenon -->
+
+    <Class rdf:about="&isdc;Phenomenon">
+        <rdfs:label xml:lang="en">Phenomenon</rdfs:label>
+        <rdfs:comment xml:lang="en">A phenomenon is a natural or social occurence.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="&isdc;ISDC"/>
+        <disjointWith rdf:resource="&isdc;DataProduct"/>
+        <disjointWith rdf:resource="&isdc;Institution"/>
+        <disjointWith rdf:resource="&isdc;Instrument"/>
+        <disjointWith rdf:resource="&isdc;Person"/>
+        <disjointWith rdf:resource="&isdc;Platform"/>
+        <disjointWith rdf:resource="&isdc;ProductType"/>
+        <disjointWith rdf:resource="&isdc;Project"/>
+        <disjointWith rdf:resource="&isdc;Publication"/>
+    </Class>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#Platform -->
+
+    <Class rdf:about="&isdc;Platform">
+        <rdfs:label xml:lang="en">Platform</rdfs:label>
+        <rdfs:comment xml:lang="en">A Platform is the physical host of instruments.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="&isdc;ISDC"/>
+        <disjointWith rdf:resource="&isdc;DataProduct"/>
+        <disjointWith rdf:resource="&isdc;Institution"/>
+        <disjointWith rdf:resource="&isdc;Instrument"/>
+        <disjointWith rdf:resource="&isdc;Person"/>
+        <disjointWith rdf:resource="&isdc;Phenomenon"/>
+        <disjointWith rdf:resource="&isdc;ProductType"/>
+        <disjointWith rdf:resource="&isdc;Project"/>
+        <disjointWith rdf:resource="&isdc;Publication"/>
+    </Class>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#ProductType -->
+
+    <Class rdf:about="&isdc;ProductType">
+        <rdfs:label xml:lang="en">Product Type</rdfs:label>
+        <rdfs:comment xml:lang="en">A product type classifies data products.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="&isdc;ISDC"/>
+        <disjointWith rdf:resource="&isdc;DataProduct"/>
+        <disjointWith rdf:resource="&isdc;Institution"/>
+        <disjointWith rdf:resource="&isdc;Instrument"/>
+        <disjointWith rdf:resource="&isdc;Person"/>
+        <disjointWith rdf:resource="&isdc;Phenomenon"/>
+        <disjointWith rdf:resource="&isdc;Platform"/>
+        <disjointWith rdf:resource="&isdc;Project"/>
+        <disjointWith rdf:resource="&isdc;Publication"/>
+    </Class>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#Project -->
+
+    <Class rdf:about="&isdc;Project">
+        <rdfs:label xml:lang="en">Project</rdfs:label>
+        <rdfs:comment xml:lang="en">A project is an entity belonging to the geoscience data and information life cycle.</rdfs:comment>
+        <equivalentClass rdf:resource="&foaf;Project"/>
+        <rdfs:subClassOf rdf:resource="&isdc;ISDC"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&isdc;defines"/>
+                <someValuesFrom rdf:resource="&isdc;ProductType"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <disjointWith rdf:resource="&isdc;DataProduct"/>
+        <disjointWith rdf:resource="&isdc;Institution"/>
+        <disjointWith rdf:resource="&isdc;Instrument"/>
+        <disjointWith rdf:resource="&isdc;Person"/>
+        <disjointWith rdf:resource="&isdc;Phenomenon"/>
+        <disjointWith rdf:resource="&isdc;Platform"/>
+        <disjointWith rdf:resource="&isdc;ProductType"/>
+        <disjointWith rdf:resource="&isdc;Publication"/>
+    </Class>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#Publication -->
+
+    <Class rdf:about="&isdc;Publication">
+        <rdfs:label xml:lang="en">Publication</rdfs:label>
+        <rdfs:comment xml:lang="en">A publication is an entity belonging to the geoscience data and information life cycle.</rdfs:comment>
+        <equivalentClass rdf:resource="&bibo;Document"/>
+        <rdfs:subClassOf rdf:resource="&isdc;ISDC"/>
+        <disjointWith rdf:resource="&isdc;DataProduct"/>
+        <disjointWith rdf:resource="&isdc;Institution"/>
+        <disjointWith rdf:resource="&isdc;Instrument"/>
+        <disjointWith rdf:resource="&isdc;Person"/>
+        <disjointWith rdf:resource="&isdc;Phenomenon"/>
+        <disjointWith rdf:resource="&isdc;Platform"/>
+        <disjointWith rdf:resource="&isdc;ProductType"/>
+        <disjointWith rdf:resource="&isdc;Project"/>
+        <disjointWith rdf:resource="&isdc;Publication"/>
+    </Class>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#SuperconductingGravimeter -->
+
+    <Class rdf:about="&isdc;SuperconductingGravimeter">
+        <rdfs:label xml:lang="en">Superconducting Gravimeter</rdfs:label>
+        <rdfs:comment xml:lang="en">Superconducting gravimeters are the most accurate relative gravimeters.These instruments are especially used in the Global Geodynamic Project (GGP).</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="&isdc;Gravimeter"/>
+    </Class>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#SuperconductingGravimeterStation -->
+
+    <Class rdf:about="&isdc;SuperconductingGravimeterStation">
+        <rdfs:label xml:lang="en">Superconducting Gravimeter Station</rdfs:label>
+        <rdfs:comment xml:lang="en">A superconductor.gravimenter station is a platform for this type of instruments.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="&isdc;Platform"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&isdc;isRunBy"/>
+                <someValuesFrom rdf:resource="&isdc;Institution"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://isdc.gfz-potsdam.de/ontology/isdc_1.4.owl#TechnicalStaff -->
+
+    <Class rdf:about="&isdc;TechnicalStaff">
+        <rdfs:label xml:lang="en">Technical Staff</rdfs:label>
+        <rdfs:comment xml:lang="en">A technical staff works in an institution and has the role as contact person.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="&isdc;Person"/>
+    </Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net -->
+
